@@ -4,9 +4,9 @@ Basically, I just implement the code in the `main.py` module  from the
 [original repository](https://github.com/udacity/CarND-Semantic-Segmentation/)
 which are indicated by the "TODO" comments with minor adjustments. 
 
+# Results
+- I did two trial passes with a `dropout = 0.5` and `dropout = 0.75`  with the following parameters
 
-- I did two trial passes with a `dropout = 0.5` and `dropout = 0.75` the following parameters:
-I found that the second trial yielding better results 
 ```
 EPOCHS = 20
 BATCH_SIZE = 1
@@ -14,9 +14,10 @@ BATCH_SIZE = 1
 LEARNING_RATE = 0.0001
 DROPOUT = 0.75
 ```
+### I found that the second trial yielding better results 
 ![comparision image](https://github.com/mithi/semantic-segmentation/blob/master/comparison_img.png)
 
-- The second trial yielded the following average training losses for each of the 20 epochs. 
+### The second trial yielded the following average training losses for each of the 20 epochs. 
 ![cost per epoch](https://github.com/mithi/semantic-segmentation/blob/master/cost_per_epoch.png)
 ```
 [2.3693416085622716,
@@ -63,30 +64,6 @@ $ nohup Jupyter notebook &
 ```
 And open `playground.ipynb` on your browser. `main.py` was generated from this notebook. 
 
-# Related Links
-
-## Refresher of TensorFlow
-- http://cv-tricks.com/artificial-intelligence/deep-learning/deep-learning-frameworks/tensorflow-tutorial/
-- http://cv-tricks.com/tensorflow-tutorial/training-convolutional-neural-network-for-image-classification/
-
-## Semantic Segmentation
-- http://cv-tricks.com/image-segmentation/transpose-convolution-in-tensorflow/
-- https://www.youtube.com/watch?v=ByjaPdWXKJ4&t=1027s
-- https://people.eecs.berkeley.edu/~jonlong/long_shelhamer_fcn.pdf
-
-## Transpose Convolution  
-- http://deeplearning.net/software/theano/tutorial/conv_arithmetic.html#transposed-convolution-arithmetic
-- https://github.com/vdumoulin/conv_arithmetic
-
-# Optional things to do
-
-## Train and Inference on the cityscapes dataset instead of the Kitti dataset.
-- https://www.cityscapes-dataset.com/
-
-## Augment Images for better results
-- https://datascience.stackexchange.com/questions/5224/how-to-prepare-augment-images-for-neural-network
-
-
 # LAYER SHAPES
 
 - The following will be printed when you run `network_shape()`, with `k` being the kernel/filter size and `s` being the stride.
@@ -106,3 +83,28 @@ decoderlayer3 transpose: decoderlayer2 k = 4 s = 2 --> (1, 20, 72, 2)
 decoderlayer4 skip: decoderlayer3 and layer3conv1x1 --> (1, 20, 72, 2)
 decoderlayer5 transpose: decoderlayer4 k = 16 s = 8 --> (1, 160, 576, 2)
 ```
+
+# Related Links
+
+##### Refresher of TensorFlow
+- http://cv-tricks.com/artificial-intelligence/deep-learning/deep-learning-frameworks/tensorflow-tutorial/
+- http://cv-tricks.com/tensorflow-tutorial/training-convolutional-neural-network-for-image-classification/
+
+##### Semantic Segmentation
+- http://cv-tricks.com/image-segmentation/transpose-convolution-in-tensorflow/
+- https://www.youtube.com/watch?v=ByjaPdWXKJ4&t=1027s
+- https://people.eecs.berkeley.edu/~jonlong/long_shelhamer_fcn.pdf
+
+##### Transpose Convolution  
+- http://deeplearning.net/software/theano/tutorial/conv_arithmetic.html#transposed-convolution-arithmetic
+- https://github.com/vdumoulin/conv_arithmetic
+
+# Optional things to do
+
+##### Train and Inference on the cityscapes dataset instead of the Kitti dataset.
+- https://www.cityscapes-dataset.com/
+
+##### Augment Images for better results
+- https://datascience.stackexchange.com/questions/5224/how-to-prepare-augment-images-for-neural-network
+
+
