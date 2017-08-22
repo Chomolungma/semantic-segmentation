@@ -59,8 +59,9 @@ Download the [Kitti Road dataset](http://www.cvlibs.net/datasets/kitti/eval_road
 
 Run the following command to run the project:
 ```
-python main.py
+$ nohup Jupyter notebook &
 ```
+And open `playground.ipynb` on your browser. `main.py` was generated from this notebook. 
 
 # Related Links
 
