@@ -1,7 +1,7 @@
 # semantic-segmentation
 - In this project, I labeled the pixels of a road in images using a Fully Convolutional Network (FCN).
 Basically, I just implement the code in the `main.py` module  from the
-[original repository](https://github.com/udacity/CarND-Semantic-Segmentation/blob/master/README.md)
+[original repository](https://github.com/udacity/CarND-Semantic-Segmentation/)
 which are indicated by the "TODO" comments with minor adjustments. 
 
 
@@ -14,10 +14,10 @@ BATCH_SIZE = 1
 LEARNING_RATE = 0.0001
 DROPOUT = 0.75
 ```
-![image](https://github.com/mithi/semantic-segmentation/blob/master/comparison_img.png)
+![comparision image](https://github.com/mithi/semantic-segmentation/blob/master/comparison_img.png)
 
 - The second trial yielded the following average training losses for each of the 20 epochs. 
-
+![cost per epoch](https://github.com/mithi/semantic-segmentation/blob/master/cost_per_epoch.png)
 ```
 [2.3693416085622716,
  0.69001412886649272,
