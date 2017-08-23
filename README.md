@@ -1,8 +1,8 @@
 # semantic-segmentation
 - In this project, I labeled the pixels of a road in images using a Fully Convolutional Network (FCN).
-Basically, I just implement the code in the `main.py` module  from the
+Basically with minor adjustments, I just implemented the code in the `main.py` module  from the
 [original repository](https://github.com/udacity/CarND-Semantic-Segmentation/)
-which are indicated by the "TODO" comments with minor adjustments. 
+which are indicated by the "TODO" comments . 
 
 # Results
 - I did two trial passes with a `dropout = 0.5` and `dropout = 0.75`  with the following parameters
