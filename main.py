@@ -232,7 +232,7 @@ def run():
              train_op, cross_entropy_loss, image_input,
              correct_label, keep_prob, learning_rate)
 
-    # Save inference data
+    # Run the model with the test images and save each painted output image (roads painted green)
     helper.save_inference_samples(RUNS_DIRECTORY, DATA_DIRECTORY, session, IMAGE_SHAPE, logits, keep_prob, image_input)
 
 #--------------------------
