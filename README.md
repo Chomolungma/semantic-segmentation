@@ -67,7 +67,8 @@ And open `playground.ipynb` on your browser. `main.py` was generated from this n
 
 # Shapes
 
-- The following will be printed when you run `network_shapes()`
+- The following will be printed when you run `network_shapes()` in `playground.ipynb`
+- IMPORTANT NOTE: that you wouldn't be able to run `run()` if you run `network_shapes()` without restarting the kernel
 - `k` is the kernel/filter size and `s` being the stride
 - Given a colored image of shape `n, 160, 576, 3` where `n = number of images = 1` the shape of each layer will be printed.
 ```
