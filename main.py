@@ -7,13 +7,11 @@ import glob
 import helper
 import project_tests as tests
 
-DATA_DIRECTORY = './data'
-RUNS_DIRECTORY = './runs'
-TRAINING_DATA_DIRECTORY ='./data/data_road/training'
-NUMBER_OF_IMAGES = len(glob.glob('./data/data_road/training/calib/*.*'))
-VGG_PATH = './data/vgg'
+#--------------------------
+# USER-SPECIFIED DATA
+#--------------------------
 
-
+# Tune these parameters
 NUMBER_OF_CLASSES = 2
 IMAGE_SHAPE = (160, 576)
 
@@ -23,9 +21,19 @@ BATCH_SIZE = 1
 LEARNING_RATE = 0.0001
 DROPOUT = 0.75
 
-# Used for plotting to visualize if our training is going well given parameters
-all_training_losses = []
+# Specify these directory paths
 
+DATA_DIRECTORY = './data'
+RUNS_DIRECTORY = './runs'
+TRAINING_DATA_DIRECTORY ='./data/data_road/training'
+NUMBER_OF_IMAGES = len(glob.glob('./data/data_road/training/calib/*.*'))
+VGG_PATH = './data/vgg'
+
+all_training_losses = [] # Used for plotting to visualize if our training is going well given parameters
+
+#--------------------------
+# DEPENDENCY CHECK
+#--------------------------
 
 # Check TensorFlow Version
 assert LooseVersion(tf.__version__) >= LooseVersion('1.0'), 'Please use TensorFlow version 1.0 or newer.  You are using {}'.format(tf.__version__)
@@ -38,12 +46,17 @@ if not tf.test.gpu_device_name():
 else:
   print('Default GPU Device: {}'.format(tf.test.gpu_device_name()))
 
+#--------------------------
+# PLACEHOLDER TENSORS
+#--------------------------
 
 correct_label = tf.placeholder(tf.float32, [None, IMAGE_SHAPE[0], IMAGE_SHAPE[1], NUMBER_OF_CLASSES])
 learning_rate = tf.placeholder(tf.float32)
 keep_prob = tf.placeholder(tf.float32)
 
-
+#--------------------------
+# FUNCTIONS
+#--------------------------
 
 def load_vgg(sess, vgg_path):
   """
@@ -52,6 +65,7 @@ def load_vgg(sess, vgg_path):
   vgg_path: Path to vgg folder, containing "variables/" and "saved_model.pb"
   return: Tuple of Tensors from VGG model (image_input, keep_prob, layer3, layer4, layer7)
   """
+  
   # load the model and weights
   model = tf.saved_model.loader.load(sess, ['vgg16'], vgg_path)
 
@@ -66,7 +80,6 @@ def load_vgg(sess, vgg_path):
   return image_input, keep_prob, layer3, layer4, layer7
 
 
-
 def conv_1x1(layer, layer_name):
   """ Return the output of a 1x1 convolution of a layer """
   return tf.layers.conv2d(inputs = layer,
@@ -74,7 +87,6 @@ def conv_1x1(layer, layer_name):
                           kernel_size = (1, 1),
                           strides = (1, 1),
                           name = layer_name)
-
 
 
 def upsample(layer, k, s, layer_name):
@@ -86,7 +98,6 @@ def upsample(layer, k, s, layer_name):
                                     strides = (s, s),
                                     padding = 'same',
                                     name = layer_name)
-
 
 
 def layers(vgg_layer3_out, vgg_layer4_out, vgg_layer7_out, num_classes = NUMBER_OF_CLASSES):
@@ -117,7 +128,6 @@ def layers(vgg_layer3_out, vgg_layer4_out, vgg_layer7_out, num_classes = NUMBER_
   return decoderlayer_output
 
 
-
 def layers_verbose(vgg_layer3_out, vgg_layer4_out, vgg_layer7_out, num_classes = NUMBER_OF_CLASSES):
 
   # Use a shorter variable name for simplicity
@@ -134,8 +144,8 @@ def layers_verbose(vgg_layer3_out, vgg_layer4_out, vgg_layer7_out, num_classes =
   decoderlayer4 = tf.add(decoderlayer3, layer3x, name = "decoderlayer4")
   decoderlayer_output = upsample(layer = decoderlayer4, k = 16, s = 8, layer_name = "decoderlayer_output")
 
-  return layer3, layer4, layer7, layer3x, layer4x, layer7x,          decoderlayer1, decoderlayer2, decoderlayer3, decoderlayer4, decoderlayer_output
-
+  return layer3, layer4, layer7, layer3x, layer4x, layer7x,
+    decoderlayer1, decoderlayer2, decoderlayer3, decoderlayer4, decoderlayer_output
 
 
 def optimize(nn_last_layer, correct_label, learning_rate, num_classes = NUMBER_OF_CLASSES):
@@ -147,8 +157,7 @@ def optimize(nn_last_layer, correct_label, learning_rate, num_classes = NUMBER_O
   num_classes: Number of classes to classify
   return: Tuple of (logits, train_op, cross_entropy_loss)
   """
-  # reshape 4D tensors to 2D
-  # Each row represents a pixel, each column a class
+  # Reshape 4D tensors to 2D, each row represents a pixel, each column a class
   logits = tf.reshape(nn_last_layer, (-1, num_classes))
   class_labels = tf.reshape(correct_label, (-1, num_classes))
 
@@ -160,7 +169,6 @@ def optimize(nn_last_layer, correct_label, learning_rate, num_classes = NUMBER_O
   train_op = tf.train.AdamOptimizer(learning_rate).minimize(cross_entropy_loss)
 
   return logits, train_op, cross_entropy_loss
-
 
 
 def train_nn(sess, epochs, batch_size, get_batches_fn, train_op,
@@ -206,8 +214,6 @@ def train_nn(sess, epochs, batch_size, get_batches_fn, train_op,
     print("------------------")
     
 
-
-
 def run_tests():
   tests.test_layers(layers)
   tests.test_optimize(optimize)
@@ -215,8 +221,8 @@ def run_tests():
   tests.test_train_nn(train_nn)
 
 
-
 def run():
+  """ Run a train a model and save output images resulting from the test image fed on the trained model """
 
   # download vgg model
   helper.maybe_download_pretrained_vgg(DATA_DIRECTORY)
@@ -249,11 +255,12 @@ def run():
     # Save inference data
     helper.save_inference_samples(RUNS_DIRECTORY, DATA_DIRECTORY, session, IMAGE_SHAPE, logits, keep_prob, image_input)
 
-
-
+#--------------------------
+# MAIN
+#--------------------------
 if __name__ == "__main__":
   run_tests()
-  run()
+  run() # Run a train a model and save output images resulting from the test image fed on the trained model
   print(all_training_losses)
 
 
