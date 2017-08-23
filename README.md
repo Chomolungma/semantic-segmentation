@@ -69,7 +69,7 @@ And open `playground.ipynb` on your browser. `main.py` was generated from this n
 
 - The following will be printed when you run `network_shapes()`
 - `k` is the kernel/filter size and `s` being the stride
-- Given a colored image of shape `n, 160, 576, 3` where `n = number of images = 1` these are the shapes of tejelayers.
+- Given a colored image of shape `n, 160, 576, 3` where `n = number of images = 1` the shape of each layer will be printed.
 ```
 ------------------
 shapes of layers:
