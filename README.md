@@ -91,6 +91,7 @@ decoderlayer5 transpose: decoderlayer4 k = 16 s = 8 --> (1, 160, 576, 2)
 - http://cv-tricks.com/tensorflow-tutorial/training-convolutional-neural-network-for-image-classification/
 
 ##### Semantic Segmentation
+- http://blog.qure.ai/notes/semantic-segmentation-deep-learning-review
 - http://cv-tricks.com/image-segmentation/transpose-convolution-in-tensorflow/
 - https://www.youtube.com/watch?v=ByjaPdWXKJ4&t=1027s
 - https://people.eecs.berkeley.edu/~jonlong/long_shelhamer_fcn.pdf
