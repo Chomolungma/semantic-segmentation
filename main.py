@@ -218,16 +218,16 @@ def run():
     model_output = layers(layer3, layer4, layer7, NUMBER_OF_CLASSES)
 
     # Returns the output logits, training operation and cost operation to be used
-    # For the logits: each row represents a pixel, each column a class
-    # training operation is what is used to get the right parameters to the model to correctly label the pixels
-    # the cross entropy loss is the cost which we are minimizing, lower cost should yield higher accuracy
+    # - logits: each row represents a pixel, each column a class
+    # - train_op: function used to get the right parameters to the model to correctly label the pixels
+    # - cross_entropy_loss: function outputting the cost which we are minimizing, lower cost should yield higher accuracy
     logits, train_op, cross_entropy_loss = optimize(model_output, correct_label, learning_rate, NUMBER_OF_CLASSES)
     
-    # Initilize all variables
+    # Initialize all variables
     session.run(tf.global_variables_initializer())
     session.run(tf.local_variables_initializer())
 
-    # train the neural network
+    # Train the neural network
     train_nn(session, EPOCHS, BATCH_SIZE, get_batches_fn, 
              train_op, cross_entropy_loss, image_input,
              correct_label, keep_prob, learning_rate)
@@ -242,7 +242,4 @@ if __name__ == "__main__":
   run_tests()
   run() # Run a train a model and save output images resulting from the test image fed on the trained model
   print(all_training_losses)
-
-
-
-
+  
