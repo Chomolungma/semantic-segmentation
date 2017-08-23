@@ -3,6 +3,9 @@
 Basically with minor adjustments, I just implemented the code in the `main.py` module  from the
 [original repository](https://github.com/udacity/CarND-Semantic-Segmentation/)
 which are indicated by the "TODO" comments . 
+- The network architecture (Using Layer 3, 4, 7 from vgg and having skip connections and upsampling)
+are based on the copied from examples and recommendation from the Udacity lectures
+- The `strides` and `kernel_size` for convolutional transpose layers are also copied from the lectures
 
 # Results
 - I did two trial passes with a `dropout = 0.5` and `dropout = 0.75`  with the following parameters
@@ -41,9 +44,6 @@ DROPOUT = 0.75
  0.056181870239777137,
  0.049685901646408862]
 ```
-- The network architecture (Using Layer 3, 4, 7 from vgg and having skip connections and upsampling)
-are based on the copied from examples and recommendation from the Udacity lectures
-- The `strides` and `kernel_size` for convolutional transpose layers are also copied from the lectures
 
 # How to use
 
@@ -66,7 +66,7 @@ And open `playground.ipynb` on your browser. `main.py` was generated from this n
 
 # LAYER SHAPES
 
-- The following will be printed when you run `network_shape()`, with `k` being the kernel/filter size and `s` being the stride.
+- The following will be printed when you run `network_shape()`, with `k` being the kernel/filter size and `s` being the stride. Given a colored image of shape `n, 160, 576, 3` where `n = number of images = 1` these are the shapes of tha layers.
 ```
 ------------------
 shapes of layers:
