@@ -4,7 +4,7 @@ Basically with minor adjustments, I just implemented the code in the `main.py` m
 [original repository](https://github.com/udacity/CarND-Semantic-Segmentation/)
 which are indicated by the "TODO" comments . 
 - The network architecture (Using Layer 3, 4, 7 from vgg and having skip connections and upsampling)
-are based on the copied from examples and recommendation from the Udacity lectures
+are copied from examples and recommendation from the Udacity lectures
 - The `strides` and `kernel_size` for convolutional transpose layers are also copied from the lectures
 
 # Results
