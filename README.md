@@ -17,10 +17,10 @@ BATCH_SIZE = 1
 LEARNING_RATE = 0.0001
 DROPOUT = 0.75
 ```
-### I found that the second trial yielding better results 
+### I found that the second trial yields better results 
 ![comparision image](https://github.com/mithi/semantic-segmentation/blob/master/comparison_img.png)
 
-### The second trial yielded the following average training losses for each of the 20 epochs. 
+### The second trial yields the following average training losses for each of the 20 epochs. 
 ![cost per epoch](https://github.com/mithi/semantic-segmentation/blob/master/cost_per_epoch.png)
 ```
 [2.3693416085622716,
