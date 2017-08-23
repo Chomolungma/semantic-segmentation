@@ -91,7 +91,6 @@ def conv_1x1(layer, layer_name):
 
 def upsample(layer, k, s, layer_name):
   """ Return the output of transpose convolution given kernel_size k and strides s """
-  # See: http://deeplearning.net/software/theano/tutorial/conv_arithmetic.html#transposed-convolution-arithmetic
   return tf.layers.conv2d_transpose(inputs = layer,
                                     filters = NUMBER_OF_CLASSES,
                                     kernel_size = (k, k),
@@ -126,26 +125,6 @@ def layers(vgg_layer3_out, vgg_layer4_out, vgg_layer7_out, num_classes = NUMBER_
   decoderlayer_output = upsample(layer = decoderlayer4, k = 16, s = 8, layer_name = "decoderlayer_output")
 
   return decoderlayer_output
-
-
-def layers_verbose(vgg_layer3_out, vgg_layer4_out, vgg_layer7_out, num_classes = NUMBER_OF_CLASSES):
-
-  # Use a shorter variable name for simplicity
-  layer3, layer4, layer7 = vgg_layer3_out, vgg_layer4_out, vgg_layer7_out
-
-  # Apply a 1x1 convolution to encoder layers
-  layer3x = conv_1x1(layer = layer3, layer_name = "layer3conv1x1")
-  layer4x = conv_1x1(layer = layer4, layer_name = "layer4conv1x1")
-  layer7x = conv_1x1(layer = layer7, layer_name = "layer7conv1x1")
- 
-  decoderlayer1 = upsample(layer = layer7x, k = 4, s = 2, layer_name = "decoderlayer1")
-  decoderlayer2 = tf.add(decoderlayer1, layer4x, name = "decoderlayer2")
-  decoderlayer3 = upsample(layer = decoderlayer2, k = 4, s = 2, layer_name = "decoderlayer3")
-  decoderlayer4 = tf.add(decoderlayer3, layer3x, name = "decoderlayer4")
-  decoderlayer_output = upsample(layer = decoderlayer4, k = 16, s = 8, layer_name = "decoderlayer_output")
-
-  return layer3, layer4, layer7, layer3x, layer4x, layer7x,
-    decoderlayer1, decoderlayer2, decoderlayer3, decoderlayer4, decoderlayer_output
 
 
 def optimize(nn_last_layer, correct_label, learning_rate, num_classes = NUMBER_OF_CLASSES):
@@ -245,7 +224,8 @@ def run():
     logits, train_op, cross_entropy_loss = optimize(model_output, correct_label, learning_rate, NUMBER_OF_CLASSES)
     
     # Initilize all variables
-    session.run([tf.global_variables_initializer(), tf.local_variables_initializer()])
+    session.run(tf.global_variables_initializer())
+    session.run(tf.local_variables_initializer())
 
     # train the neural network
     train_nn(session, EPOCHS, BATCH_SIZE, get_batches_fn, 
