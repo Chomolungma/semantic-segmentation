@@ -8,6 +8,7 @@ are copied from examples and recommendation from the Udacity lectures
 - The `strides` and `kernel_size` for convolutional transpose layers are also copied from the lectures
 
 # Results
+- An important point to note is, batch size and learning rate are linked. If the batch size is too small then the gradients will become more unstable and would need to reduce the learning rate.
 - I did two trial passes with a `dropout = 0.5` and `dropout = 0.75`  with the following parameters
 
 ```
@@ -101,7 +102,7 @@ decoderlayer5 transpose: decoderlayer4 k = 16 s = 8 --> (1, 160, 576, 2)
 - https://github.com/vdumoulin/conv_arithmetic
 
 # Optional things to do
-
+##### Use custom weight initialization. Xavier init is also proposed to work good when working with FCNs.
 ##### Train and Inference on the cityscapes dataset instead of the Kitti dataset.
 - https://www.cityscapes-dataset.com/
 
