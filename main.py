@@ -203,7 +203,7 @@ def run_tests():
 def run():
   """ Run a train a model and save output images resulting from the test image fed on the trained model """
 
-  # download vgg model
+  # Get vgg model if we can't find it where it should be
   helper.maybe_download_pretrained_vgg(DATA_DIRECTORY)
 
   # A function to get batches
@@ -214,7 +214,7 @@ def run():
     # Returns the three layers, keep probability and input layer from the vgg architecture
     image_input, keep_prob, layer3, layer4, layer7 = load_vgg(session, VGG_PATH)
 
-    # The resulting network architecture, adding a decoder on top of the given vgg model
+    # The resulting network architecture from adding a decoder on top of the given vgg model
     model_output = layers(layer3, layer4, layer7, NUMBER_OF_CLASSES)
 
     # Returns the output logits, training operation and cost operation to be used
