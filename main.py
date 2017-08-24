@@ -12,6 +12,7 @@ import project_tests as tests
 #--------------------------
 
 # Tune these parameters
+
 NUMBER_OF_CLASSES = 2
 IMAGE_SHAPE = (160, 576)
 
