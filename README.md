@@ -101,6 +101,7 @@ decoderlayer5 transpose: decoderlayer4 k = 16 s = 8 --> (1, 160, 576, 2)
 - https://people.eecs.berkeley.edu/~jonlong/long_shelhamer_fcn.pdf
 
 ##### Transpose Convolution  
+- https://arxiv.org/pdf/1603.07285.pdf
 - http://deeplearning.net/software/theano/tutorial/conv_arithmetic.html#transposed-convolution-arithmetic
 - https://github.com/vdumoulin/conv_arithmetic
 
