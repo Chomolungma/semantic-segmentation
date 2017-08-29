@@ -2,13 +2,13 @@
 - In this project, I labeled the pixels of a road in images using a Fully Convolutional Network (FCN).
 Basically with minor adjustments, I just implemented the code in the `main.py` module  from the
 [original repository](https://github.com/udacity/CarND-Semantic-Segmentation/)
-which are indicated by the "TODO" comments . 
+which are indicated with "TODO" comments . 
 - The network architecture (Using Layer 3, 4, 7 from vgg and having skip connections and upsampling)
 are copied from examples and recommendation from the Udacity lectures
 - The `strides` and `kernel_size` for convolutional transpose layers are also copied from the lectures
 
 # Results
-- An important point to note is, batch size and learning rate are linked. If the batch size is too small then the gradients will become more unstable and would need to reduce the learning rate.
+- An important point to note is, batch size and learning rate are linked. If the batch size is too small then the gradients will become more unstable and would need to reduce the learning rate. However, based on my trials a batch size of one performed better than a batch size of two.
 - I did two trial passes with a `dropout = 0.5` and `dropout = 0.75`  with the following parameters
 
 ```
