@@ -93,6 +93,7 @@ decoderlayer5 transpose: decoderlayer4 k = 16 s = 8 --> (1, 160, 576, 2)
 ##### Refresher of TensorFlow
 - http://cv-tricks.com/artificial-intelligence/deep-learning/deep-learning-frameworks/tensorflow-tutorial/
 - http://cv-tricks.com/tensorflow-tutorial/training-convolutional-neural-network-for-image-classification/
+- https://danijar.com/structuring-your-tensorflow-models/
 
 ##### Semantic Segmentation
 - http://blog.qure.ai/notes/semantic-segmentation-deep-learning-review
